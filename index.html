@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Byungwoo Park — Vision AI Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #111;
+      background: #fff;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Layout ─────────────────────────────────────── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 52px;
+    }
+
+    /* ── Nav ────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid #eee;
+      height: 56px;
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .nav-logo {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #999;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: #111; }
+
+    /* ── Section base ───────────────────────────────── */
+    section {
+      border-bottom: 1px solid #eee;
+      padding: 64px 0;
+    }
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #bbb;
+      margin-bottom: 40px;
+    }
+
+    /* ── Hero ───────────────────────────────────────── */
+    #hero {
+      padding: 80px 0 72px;
+      border-bottom: 1px solid #eee;
+    }
+    .hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 16px;
+    }
+    .hero-name {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 24px;
+      letter-spacing: 0.2px;
+    }
+    .hero-title span { color: #bbb; margin: 0 6px; }
+    .hero-bio {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.9;
+      max-width: 580px;
+      margin-bottom: 36px;
+    }
+    .hero-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 9px 20px;
+      border: 1px solid #111;
+      color: #111;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: #111; color: #fff; }
+    .btn-filled { background: #111; color: #fff; }
+    .btn-filled:hover { background: #333; }
+
+    /* ── Experience ─────────────────────────────────── */
+    .exp-list { display: flex; flex-direction: column; gap: 36px; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .exp-meta { padding-top: 2px; }
+    .exp-period {
+      font-size: 10px;
+      color: #aaa;
+      margin-bottom: 4px;
+      letter-spacing: 0.3px;
+    }
+    .exp-company {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #888;
+    }
+    .exp-role {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .exp-sub {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 12px;
+    }
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .exp-bullets li {
+      font-size: 12px;
+      color: #555;
+      line-height: 1.75;
+      padding-left: 16px;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #ccc;
+    }
+
+    /* ── Research Timeline ──────────────────────────── */
+    .timeline { display: flex; flex-direction: column; }
+    .timeline-year {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #bbb;
+      padding: 10px 0 6px;
+      border-top: 1px solid #f2f2f2;
+      margin-top: 6px;
+    }
+    .timeline-year:first-child { border-top: none; margin-top: 0; }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid #f7f7f7;
+      align-items: start;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+      background: #111;
+      padding: 3px 7px;
+      border-radius: 2px;
+      margin-top: 3px;
+      white-space: nowrap;
+    }
+    .tag-proj { background: #888; }
+    .tag-domestic { background: #555; }
+    .item-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      line-height: 1.5;
+    }
+    .item-venue {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+    .item-desc {
+      font-size: 11px;
+      color: #aaa;
+      line-height: 1.7;
+    }
+
+    /* ── Education ──────────────────────────────────── */
+    .edu-list { display: flex; flex-direction: column; gap: 0; }
+    .edu-item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 28px;
+      padding: 20px 0;
+      border-bottom: 1px solid #f5f5f5;
+      align-items: start;
+    }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-period { font-size: 11px; color: #aaa; padding-top: 2px; }
+    .edu-degree { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    .edu-school { font-size: 11px; color: #777; margin-bottom: 3px; }
+    .edu-note { font-size: 11px; color: #aaa; line-height: 1.6; }
+
+    /* ── Skills ─────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    .skill-group-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #bbb;
+      margin-bottom: 14px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-tag {
+      font-size: 10px;
+      padding: 4px 10px;
+      border: 1px solid #e5e5e5;
+      color: #666;
+      border-radius: 2px;
+    }
+    .skill-tag.primary {
+      border-color: #111;
+      color: #111;
+      font-weight: 600;
+    }
+
+    /* ── Awards ─────────────────────────────────────── */
+    .award-list { display: flex; flex-direction: column; }
+    .award-item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 28px;
+      padding: 16px 0;
+      border-bottom: 1px solid #f5f5f5;
+      align-items: start;
+    }
+    .award-item:last-child { border-bottom: none; }
+    .award-date { font-size: 11px; color: #aaa; }
+    .award-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+    .award-org { font-size: 11px; color: #aaa; }
+
+    /* ── Footer ─────────────────────────────────────── */
+    footer {
+      padding: 40px 0;
+    }
+    footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #bbb;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #111; }
+    .footer-copy { font-size: 11px; color: #ccc; }
+
+    /* ── Responsive ─────────────────────────────────── */
+    @media (max-width: 680px) {
+      .container { padding: 0 24px; }
+
+      .hero-name { font-size: 32px; letter-spacing: -1px; }
+      #hero { padding: 56px 0 52px; }
+      section { padding: 48px 0; }
+
+      .exp-item,
+      .edu-item,
+      .award-item { grid-template-columns: 1fr; gap: 6px; }
+
+      .exp-meta { display: flex; gap: 12px; align-items: baseline; }
+      .exp-company::before { content: "·"; margin-right: 12px; color: #ccc; }
+
+      .timeline-item { grid-template-columns: 52px 1fr; gap: 14px; }
+
+      .skills-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+
+      .nav-links { gap: 20px; }
+
+      footer .container { flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+
+    @media (max-width: 420px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .hero-links { gap: 8px; }
+      .btn { font-size: 9px; padding: 8px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="container">
+      <div class="nav-logo">BP</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Portfolio · 2025</div>
+      <h1 class="hero-name">Byungwoo Park</h1>
+      <p class="hero-title">
+        Vision AI Engineer
+        <span>·</span>
+        Autonomous Driving
+        <span>·</span>
+        3D / 2D Computer Vision
+        <span>·</span>
+        Robotics
+      </p>
+      <p class="hero-bio">
+        M.S. in Artificial Intelligence at Hanyang University.<br>
+        Building perception systems where 3D data, deep learning, and robotics converge —
+        from LiDAR-based object detection in autonomous driving research
+        to 3D scan inspection pipelines deployed in industrial environments.
+      </p>
+      <div class="hero-links">
+        <a class="btn btn-filled" href="mailto:bwpark@spa.hanyang.ac.kr">Email</a>
+        <a class="btn" href="https://www.linkedin.com/in/byungwoo-park-651318285" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="#" target="_blank" rel="noopener">Google Scholar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About anchor (maps to hero) -->
+  <span id="about" style="display:block; margin-top:-56px; padding-top:56px; visibility:hidden;"></span>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="container">
+      <p class="section-label">Experience</p>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-period">2025.07 – 2025.12</div>
+            <div class="exp-company">Hypernoology</div>
+          </div>
+          <div>
+            <div class="exp-role">Vision AI Engineer</div>
+            <div class="exp-sub">Senior Researcher / Team Lead</div>
+            <ul class="exp-bullets">
+              <li>Developed 3D scan · alignment · inspection automation pipeline (UR10e + Zivid camera) from scratch — ROI ICP, RANSAC, anchor-based CAD alignment, multi-view stitching. Maintained ≤0.5 mm alignment error in production.</li>
+              <li>Built front-view object detection model for pedestrians, cyclists, and vehicles (YOLOv8, 8 MP camera); resolved class imbalance via oversampling + WeightedRandomSampler, achieving AP +4–6% on minority classes.</li>
+              <li>Industrial safety monitoring system — integrated 120k+ samples, auto-labeling pipeline, YOLO v11-pose + GRU-based anomaly detection, synthetic data generation for rare events.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-period">2021.01 – 2022.04</div>
+            <div class="exp-company">Lotte Energy Materials</div>
+          </div>
+          <div>
+            <div class="exp-role">Process Engineer</div>
+            <div class="exp-sub">Copper foil production &amp; process management</div>
+            <ul class="exp-bullets">
+              <li>Led copper recovery project from wastewater — ~18.5 tons/month recovered, ~₩240M/month cost savings.</li>
+              <li>Managed yield optimization and operator oversight for copper foil manufacturing line.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-period">2019.10 – 2019.12</div>
+            <div class="exp-company">KITECH</div>
+          </div>
+          <div>
+            <div class="exp-role">Research Intern</div>
+            <div class="exp-sub">Professional Service Robot Application Team</div>
+            <ul class="exp-bullets">
+              <li>Developed tomato ripeness classification algorithm; built dataset collection and labeling pipeline.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Research -->
+  <section id="research">
+    <div class="container">
+      <p class="section-label">Research &amp; Publications</p>
+      <div class="timeline">
+
+        <div class="timeline-year">2024</div>
+
+        <div class="timeline-item">
+          <div><span class="tag">ICRA</span></div>
+          <div>
+            <div class="item-title">Fine-Grained Pillar Feature Encoding via Spatio-Temporal Virtual Grid for 3D Object Detection</div>
+            <div class="item-venue">IEEE International Conference on Robotics and Automation (ICRA) 2024<br>Y. Kim*, K. Park*, J. Koh, B. Park, J.W. Choi</div>
+            <div class="item-desc">Proposed a novel pillar encoding architecture that captures point cloud distributions across vertical, temporal, and horizontal axes. NDS +1.46% over baseline (latency: 63 → 69 ms).</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div><span class="tag">ICTC</span></div>
+          <div>
+            <div class="item-title">Enhancing Roadside 3D Object Detection Using Dynamic Pseudo HD Map</div>
+            <div class="item-venue">15th International Conference on ICT Convergence (ICTC) 2024<br>B. Park, Y. Kim, J. Kim, J.W. Choi</div>
+            <div class="item-desc">BEV voxel grid variance-based dynamic/static region classification to construct a lightweight Pseudo HD Map. mAP +3.3% over baseline (73.1 → 76.4).</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div><span class="tag tag-domestic">KICS</span></div>
+          <div>
+            <div class="item-title">LiDAR-based Multi-Object Detection in Unstructured Driving Environments</div>
+            <div class="item-venue">Korean Institute of Communications and Information Sciences (KICS) Summer 2024<br>B. Park, C. Kang, S. Ahn, J.W. Choi</div>
+          </div>
+        </div>
+
+        <div class="timeline-year">2023 – 2024</div>
+
+        <div class="timeline-item">
+          <div><span class="tag tag-proj">Project</span></div>
+          <div>
+            <div class="item-title">Driving Environment Data Stitching for Autonomous Vehicle Blind Spots</div>
+            <div class="item-venue">Korea Electronics Technology Institute (KETI) · Mar 2023 – Dec 2024</div>
+            <div class="item-desc">4-sensor LiDAR stitching pipeline at Pangyo Zero City intersection. Built detect–track–predict pipeline achieving FPS 31.4 (target: 20+) and mAP 60.1 (target: 60+).</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div><span class="tag tag-proj">Project</span></div>
+          <div>
+            <div class="item-title">Robust Object Tracking in Off-road Environments for Convoy Driving</div>
+            <div class="item-venue">Hanwha Aerospace · Jan – Jun 2024</div>
+            <div class="item-desc">Sensor fusion pipeline (LiDAR + camera) for unmanned vehicle tracking in dense vegetation. Single-target tracking after 2D–3D match; MOTA up to 0.999, runtime ≤100 ms on embedded GPU (ADLINK EGX MXM-A4500).</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <div class="container">
+      <p class="section-label">Education</p>
+      <div class="edu-list">
+        <div class="edu-item">
+          <div class="edu-period">2022 – 2025</div>
+          <div>
+            <div class="edu-degree">M.S. in Artificial Intelligence</div>
+            <div class="edu-school">Hanyang University, Seoul</div>
+            <div class="edu-note">Signal Processing &amp; AI Lab · Advisor: Prof. Junwon Choi<br>Thesis: LiDAR-based 3D Object Detection Technology</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-period">2014 – 2021</div>
+          <div>
+            <div class="edu-degree">B.S. in Robotics Engineering</div>
+            <div class="edu-school">Hanyang University, Seoul</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label">Skills</p>
+      <div class="skills-grid">
+        <div>
+          <div class="skill-group-label">Languages</div>
+          <div class="skill-tags">
+            <span class="skill-tag primary">Python</span>
+            <span class="skill-tag primary">C</span>
+            <span class="skill-tag">C++</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-label">Frameworks</div>
+          <div class="skill-tags">
+            <span class="skill-tag primary">PyTorch</span>
+            <span class="skill-tag primary">TensorFlow</span>
+            <span class="skill-tag">OpenCV</span>
+            <span class="skill-tag">TensorRT</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-label">Tools &amp; Platforms</div>
+          <div class="skill-tags">
+            <span class="skill-tag">ROS</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Open3D</span>
+            <span class="skill-tag">Ubuntu</span>
+            <span class="skill-tag">Zivid SDK</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <section id="awards">
+    <div class="container">
+      <p class="section-label">Awards &amp; Certifications</p>
+      <div class="award-list">
+        <div class="award-item">
+          <div class="award-date">Sep 2024</div>
+          <div>
+            <div class="award-title">OPIc — Intermediate High</div>
+            <div class="award-org">English Language Proficiency</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-date">Nov 2019</div>
+          <div>
+            <div class="award-title">Creative Capstone Design Competition Award</div>
+            <div class="award-org">Engineering Education Innovation Leading University Program · Sungkyunkwan University</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-links">
+        <a href="mailto:bwpark@spa.hanyang.ac.kr">Email</a>
+        <a href="https://www.linkedin.com/in/byungwoo-park-651318285" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" target="_blank" rel="noopener">GitHub</a>
+        <a href="#" target="_blank" rel="noopener">Google Scholar</a>
+      </div>
+      <div class="footer-copy">© 2025 Byungwoo Park</div>
+    </div>
+  </footer>
+
+  <script>
+    // Active nav highlight via IntersectionObserver
+    const sections = document.querySelectorAll('section[id], span[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+</html>
